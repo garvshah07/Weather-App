@@ -29,7 +29,7 @@ const city = (inputText.value = "Ahmedabad");
 // fetch function with api
 
 const getWeather = async (city) => {
-  const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${inputText.value} `;
+  const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${inputText.value}`;
 
   const options = {
     method: "GET",
@@ -50,13 +50,13 @@ const getWeather = async (city) => {
       searchDetail.innerHTML = "";
       const content = `
     <div>
-       <h1>${inputText.value}</h1>
+       <h1>Weather of <span>${inputText.value || "ahmedabad"}</span> </h1>
        </br>
-       <h2>Temprature : ${data.temp}</h2>
+       <h2>Temprature : ${data.temp || "0"}&#8451</h2>
     <div>
     </br>
     <div>
-      <h2>Wind : ${data.wind_speed} Km/H </h2>
+      <h2>Wind : ${data.wind_speed || "0"} Km/H </h2>
     </div>
     `;
 
@@ -69,7 +69,7 @@ const getWeather = async (city) => {
   }
 };
 
-getWeather("india");
+getWeather();
 
 // Search button Handler
 
