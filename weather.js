@@ -1,5 +1,3 @@
-const api_key = "dzDLNmnMuzFUn9+4l7wEDw==bIBsxaHD7swh0Z3A";
-
 // Node Div
 
 const mainDiv = document.querySelector(".main-div");
