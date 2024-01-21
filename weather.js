@@ -24,9 +24,11 @@ searchBtn.id = "search-btn";
 searchDiv.appendChild(inputText);
 searchDiv.appendChild(searchBtn);
 
+const city = (inputText.value = "Ahmedabad");
+
 // fetch function with api
 
-const getWeather = async () => {
+const getWeather = async (city) => {
   const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${inputText.value} `;
 
   const options = {
@@ -39,26 +41,35 @@ const getWeather = async () => {
 
   try {
     if (inputText.value == "") {
-      return alert("Please enter city name");
+      return;
     } else {
       const response = await fetch(url, options);
       const data = await response.json();
 
-      const SearchDetail = document.querySelector(".search-detail-div");
+      const searchDetail = document.querySelector(".search-detail-div");
+      searchDetail.innerHTML = "";
       const content = `
     <div>
        <h1>${inputText.value}</h1>
+       </br>
        <h2>Temprature : ${data.temp}</h2>
     <div>
+    </br>
+    <div>
+      <h2>Wind : ${data.wind_speed} Km/H </h2>
+    </div>
     `;
 
-      SearchDetail.insertAdjacentHTML("afterbegin", content);
-      inputText.value = "";
+      searchDetail.insertAdjacentHTML("afterbegin", content);
+
+      // inputText.value = "";
     }
   } catch (error) {
     console.error(error);
   }
 };
+
+getWeather("india");
 
 // Search button Handler
 
@@ -66,5 +77,3 @@ searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
   getWeather();
 });
-
-// getWeather("ahmedabad");
